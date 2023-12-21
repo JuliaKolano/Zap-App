@@ -1,0 +1,42 @@
+.homeTitle {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 280px;
+    min-height: 105px;
+    background-image: url("../images/pangolin_1.jpg");
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+.homeTitle h1 {
+    color: #efefef;
+    font-size: 10vw;
+}
+.appDescription {
+    width: 100%;
+    margin: 0 auto;
+    line-height: 1.625;
+    top: 16em;
+    height: 18em;
+    overflow-x: scroll;
+    position: relative;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.appDescription::-webkit-scrollbar {
+    display: none;
+}
+/* css obtained from https://codepen.io/magnificode/pen/GpqGOm*/
+/* pangolin image obtained from https://unsplash.com/photos/brown-and-white-spotted-bird-mtTpAM2uaRM */

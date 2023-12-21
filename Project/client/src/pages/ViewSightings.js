@@ -1,5 +1,5 @@
 import React from "react";
-// import "../styles/ViewSightings.css";
+import "../styles/ViewSightings.css";
 import SearchBar from "../components/SearchBar";
 import SightingList from "../components/SightingList";
 

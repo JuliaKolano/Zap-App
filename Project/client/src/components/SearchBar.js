@@ -1,8 +1,8 @@
 import React from "react";
 
 class SearchBar extends React.Component {
-  componentDidMount() {
-    this.fetchSightings();
+  async componentDidMount() {
+    await this.fetchSightings();
   }
 
   handleSubmit = async (evt) => {

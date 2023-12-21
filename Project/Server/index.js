@@ -38,8 +38,6 @@ async function getSightings(req) {
         if (search.length > 0 && search.length <= 32) {
             sql += `WHERE deadOrAlive='${search}' OR deathCause='${search}' OR location='${search}'`;
             // the parameter doesn't pass data validation or sanitation
-        } else {
-            status = 400;
         }
         const rows = await db.query(sql);
         if (rows) {
