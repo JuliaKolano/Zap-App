@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const multer = require('multer');
+const path = require('path');
 const db = require('./db');
 
 // set up express
@@ -14,6 +15,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cors());
 
 //set up multer storage middleware
+app.use("/pangolin_api/images", express.static(path.join(__dirname, "images")));
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'images/');
