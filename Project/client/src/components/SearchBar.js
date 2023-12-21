@@ -1,0 +1,53 @@
+import React from "react";
+
+class SearchBar extends React.Component {
+  componentDidMount() {
+    this.fetchSightings();
+  }
+
+  handleSubmit = async (evt) => {
+    evt.preventDefault();
+    const query = document.querySelector("#search").value.trim();
+
+    this.props.updateState(query, true, false, []);
+
+    if (query.length > 0) {
+      this.fetchSightings(query);
+    } else {
+      this.fetchSightings();
+    }
+  };
+
+  async fetchSightings(query) {
+    let url = "https://jk911.brighton.domains/pangolin_api?search=";
+
+    if (query) {
+      url += encodeURIComponent(query);
+    }
+
+    try {
+      const result = await fetch(url, { method: "GET" });
+      const jsonData = await result.json();
+      this.props.updateState(query, false, true, jsonData.sightings);
+    } catch (err) {
+      console.log(err);
+      this.props.updateState(query, false, true, []);
+    }
+  }
+
+  render = () => {
+    return (
+      <form id="searchBar" onSubmit={this.handleSubmit}>
+        <label htmlFor="search"></label>
+        <input
+          id="search"
+          type="search"
+          placeholder="Search Pangolin Sightings..."
+        />
+        <button type="submit">Go</button>
+      </form>
+    );
+  };
+}
+
+export default SearchBar;
