@@ -34,7 +34,7 @@ async function getSightings(req) {
     try {
         const search = req.query.search;
         // if the search parameter is empty, return all the rows
-        let sql = 'SELECT * FROM sightings'
+        let sql = 'SELECT * FROM sightings ';
         if (search.length > 0 && search.length <= 32) {
             sql += `WHERE deadOrAlive='${search}' OR deathCause='${search}' OR location='${search}'`;
             // the parameter doesn't pass data validation or sanitation
