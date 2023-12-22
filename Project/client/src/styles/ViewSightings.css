@@ -69,8 +69,18 @@
     margin-top: 10em;
 }
 .item {
-    border-style: solid;
-    padding-left: 1em;
+    box-shadow: 0 4px 4px 4px rgba(0,0,0,0.2);
+    border-radius: 1em;
+    padding: 1em;
     margin-top: 1em;
+}
+.pangolinImage {
+    object-fit: cover;
+    border-radius: 0.5em;
+    float: left;
+    margin-right: 1em;
+}
+strong {
+    color: rgb(222, 103, 11);
 }
 /* Search Bar styles obtained from https://codepen.io/liamj/pen/vYYLGZj */

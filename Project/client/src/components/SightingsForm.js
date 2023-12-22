@@ -1,5 +1,4 @@
 import React from "react";
-// import "../styles/RecordSighting.css";
 
 class SightingsForm extends React.Component {
   constructor(props) {

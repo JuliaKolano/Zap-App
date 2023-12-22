@@ -1,4 +1,5 @@
 import React from "react";
+import temporaryImage from "../images/pangolin_1.jpg";
 
 class SightingList extends React.Component {
   render = () => {
@@ -10,10 +11,10 @@ class SightingList extends React.Component {
     if (loading) {
       return <p>Loading...</p>;
     } else if (sightings.length === 0 && searched !== false) {
-      return <p>No sightings found that match the search: "{query}"</p>;
+      return <p className="sightings">No sightings found that match the search: "{query}"</p>;
     } else {
       const sightingItems = sightings.map((item, index) => {
-        const imagePath = item.imagePath ? item.imagePath : "No image";
+        const imagePath = item.imagePath ? `http://jk911.brighton.domains/pangolin_api/${item.imagePath}` : "No image";
         const deadOrAlive = item.deadOrAlive ? item.deadOrAlive : "Unknown";
         const deathCause = item.deathCause ? item.deathCause : "Unknown";
         const location = item.location ? item.location : "Unknown";
@@ -21,12 +22,11 @@ class SightingList extends React.Component {
 
         return (
           <div key={index.toString()} className="item">
-            <p>Image Path: {imagePath}</p>
-            <img src={imagePath} alt="a sighted pangolin" width="100" height="100"></img>
-            <p>Dead or Alive: {deadOrAlive}</p>
-            <p>Death Cause: {deathCause}</p>
-            <p>Location: {location}</p>
-            <p>Notes: {notes}</p>
+            <img className="pangolinImage" src={temporaryImage} alt="a sighted pangolin" width="130" height="100"></img>
+            <p><strong>Dead or Alive:</strong> {deadOrAlive}</p>
+            <p><strong>Death Cause:</strong> {deathCause}</p>
+            <p><strong>Location:</strong> {location}</p>
+            <p><strong>Notes:</strong> {notes}</p>
           </div>
         );
       });
