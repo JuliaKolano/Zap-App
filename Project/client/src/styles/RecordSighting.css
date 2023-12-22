@@ -1,0 +1,67 @@
+.recordSightingTitle {
+    font-size: 2em;
+    text-align: center;
+    position: fixed;
+    top: -1em;
+    left: 0;
+    width: 100%;
+    height: 12%;
+    display: flex;
+    justify-content: space-around;
+    padding: 5px;
+    padding-top: 0.5em;
+    z-index: 2;
+    background-color: rgb(226,135,67);
+}
+.recordSightingForm {
+    margin-top: 7em;
+    background-color: #ffffff;
+    border-radius: 1.2em;
+    box-sizing: border-box;
+    height: 70vh;
+    padding: 1.5em;
+    width: 95vi;
+    border-style: solid;
+    padding: 1em;
+    margin-left: -9vi;
+}
+.recordSightingForm div {
+    padding-bottom: 1.5em;
+}
+.inputContainer {
+    margin-top: 1em;
+    height: 50px;
+    position: relative;
+    width: 100%;
+}
+.recordSightingInput, .recordSightingSelect, .recordSightingTextarea {
+    background-color: rgb(210, 210, 210);
+    border-radius: 12px;
+    border: 0;
+    box-sizing: border-box;
+    color: #000000;
+    font-size: 18px;
+    height: 100%;
+    outline: 0;
+    padding: 4px 20px 0;
+    width: 100%;
+}
+.recordSightingButton {
+    display: block;
+    background-color: rgb(226,135,67);
+    border-radius: 12px;
+    border: 0;
+    box-sizing: border-box;
+    color: #eee;
+    cursor: pointer;
+    font-size: 20px;
+    height: 50px;
+    outline: 0;
+    text-align: center;
+    width: 5em;
+    margin-top: 1em;
+}
+.recordSightingButton:active {
+    background-color: rgb(218, 105, 19);
+}
+/* Form css obtained from  https://codepen.io/ainalem/pen/GRqPwoz*/

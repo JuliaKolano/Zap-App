@@ -38,13 +38,14 @@ class SearchBar extends React.Component {
   render = () => {
     return (
       <form id="searchBar" onSubmit={this.handleSubmit}>
-        <label htmlFor="search"></label>
+        <label className="searchLabel" htmlFor="search"></label>
         <input
+          className="search"
           id="search"
           type="search"
           placeholder="Search Pangolin Sightings..."
         />
-        <button type="submit">Go</button>
+        <button className="searchButton" type="submit">Go</button>
       </form>
     );
   };

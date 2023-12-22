@@ -27,7 +27,7 @@ class ViewSighting extends React.Component {
         return (
             <div>
               <header>
-                <p className="title">View Pangolin Sightings</p>
+                <p className="ViewSightingsTitle">View Pangolin Sightings</p>
               </header>
               <SearchBar updateState={this.updateState} />
               <SightingList state={this.state} />

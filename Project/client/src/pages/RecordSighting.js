@@ -1,6 +1,6 @@
 import React from "react";
 import SightingsForm from "../components/SightingsForm";
-// import "../styles/RecordSighting.css";
+import "../styles/RecordSighting.css";
 
 class RecordSighting extends React.Component {
 
@@ -8,7 +8,7 @@ class RecordSighting extends React.Component {
     return (
       <div>
         <header>
-          <p className="title">Record a Pangolin Sighting</p>
+          <p className="recordSightingTitle">Record a Pangolin Sighting</p>
         </header>
         <SightingsForm />
       </div>

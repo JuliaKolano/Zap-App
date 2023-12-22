@@ -1,18 +1,18 @@
-form {
+#searchBar {
     margin-top: -3em;
     position: fixed;
     width: 75%;
     background: rgb(226,135,67);
     border-radius: 0.7rem;
 }
-input, button {
+.search, .searchButton {
     height: 2em;
     font-family: 'Lato', sans-serif;
     border: 0;
     color: #2f2f2f;
     font-size: 1.1em;
 }
-input[type="search"] {
+.search {
     width: 100%;
     background: #fff;
     padding: 0 1.6rem;
@@ -24,7 +24,7 @@ input[type="search"] {
     z-index: 1;
     position: relative;
 }
-button {
+.searchButton {
     display: none;
     position: absolute;
     top: 0;
@@ -34,14 +34,14 @@ button {
     background: rgb(226,135,67);
     border-radius: 0 0.7rem 0.7rem 0;
 }
-input:not(:placeholder-shown) {
+.search:not(:placeholder-shown) {
     border-radius: 0.7rem 0 0 0.7rem;
     width: calc(100% - 6rem);
     + button {
         display: block;
     }
 }
-label {
+.searchLabel {
     position: absolute;
     clip: rect(1px, 1px, 1px, 1px);
     padding: 0;
@@ -50,7 +50,7 @@ label {
     width: 1px;
     overflow: hidden;
 }
-.title {
+.ViewSightingsTitle {
     font-size: 2em;
     text-align: center;
     position: fixed;

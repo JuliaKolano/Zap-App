@@ -78,8 +78,10 @@ class SightingsForm extends React.Component {
     return (
       <div>
         <form className="recordSightingForm" onSubmit={this.handleSubmit}>
-          <div className="inputContainer ic1">
+          <div className="inputContainer">
+            <label htmlFor="image">Image: </label>
             <input
+              className="recordSightingInput"
               type="file"
               id="image"
               name="image"
@@ -87,10 +89,11 @@ class SightingsForm extends React.Component {
               onChange={this.handleFileChange}
             />
             <div className="cut"></div>
-            <label htmlFor="image">Image: </label>
           </div>
-          <div className="inputContainer ic2">
+          <div className="inputContainer">
+            <label htmlFor="deadOrAlive">Dead or Alive: </label>
             <select
+              className="recordSightingSelect"
               id="deadOrAlive"
               name="deadOrAlive"
               value={formData.deadOrAlive}
@@ -100,10 +103,11 @@ class SightingsForm extends React.Component {
               <option value="Dead">Dead</option>
             </select>
             <div className="cut"></div>
-            <label htmlFor="deadOrAlive">Dead or Alive: </label>
           </div>
-          <div className="inputContainer ic2">
+          <div className="inputContainer">
+            <label htmlFor="deathCause">Death Cause: </label>
             <select
+              className="recordSightingSelect"
               id="deathCause"
               name="deathCause"
               value={formData.deathCause}
@@ -120,19 +124,19 @@ class SightingsForm extends React.Component {
               <option value="N/A">N/A</option>
             </select>
             <div className="cut"></div>
-            <label htmlFor="deathCause">Death Cause: </label>
           </div>
-          <div className="inputContainer ic2">
+          <div className="inputContainer">
+            <label htmlFor="notes">Notes: </label>
             <textarea
+              className="recordSightingTextarea"
               id="notes"
               name="notes"
               value={formData.notes}
               onChange={this.handleInputChange}
             />
             <div className="cut cutShort"></div>
-            <label htmlFor="notes">Notes: </label>
           </div>
-          <button type="submit">Submit</button>
+          <button className="recordSightingButton" type="submit">Submit</button>
         </form>
       </div>
     );
