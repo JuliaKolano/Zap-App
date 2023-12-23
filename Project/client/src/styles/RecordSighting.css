@@ -18,12 +18,12 @@
     background-color: #ffffff;
     border-radius: 1.2em;
     box-sizing: border-box;
-    height: 70vh;
     padding: 1.5em;
     width: 95vi;
     border-style: solid;
     padding: 1em;
     margin-left: -9vi;
+    margin-bottom: 7em;
 }
 .recordSightingForm div {
     padding-bottom: 1.5em;
@@ -56,7 +56,7 @@
     width: 41%;
     margin-left: -0.5em;
 }
-.recordSightingInput::file-selector-button, .takePictureButton {
+.recordSightingInput::file-selector-button, .takePictureButton, .captureButton, .toggleButton {
     display: inline-block;
     background-color: rgb(210, 210, 210);
     border-radius: 12px;
@@ -79,6 +79,11 @@
     height: 2.1em;
     margin-left: -1em;
 }
+.captureButton, .toggleButton {
+    width: 8em;
+    margin-left: 0.2em;
+    margin-top: 1em;
+}
 .imagePreview {
     object-fit: cover;
     border-radius: 0.5em;
@@ -86,6 +91,7 @@
 }
 .camera {
     width: 100%;
+    margin-top: 2em;
 }
 .recordSightingTextarea {
     resize: none;
@@ -105,7 +111,7 @@
     width: 5em;
     margin-top: 1em;
 }
-.recordSightingButton:active, .recordSightingInput::file-selector-button:active, .takePictureButton:active {
+.recordSightingButton:active, .recordSightingInput::file-selector-button:active, .takePictureButton:active, .captureButton:active, .toggleButton:active {
     background-color: rgb(218, 105, 19);
 }
 /* Form css obtained from  https://codepen.io/ainalem/pen/GRqPwoz*/

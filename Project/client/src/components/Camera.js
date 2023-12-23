@@ -41,8 +41,8 @@ class Camera extends React.Component {
         return (
             <div>
                 <Webcam className="camera" audio={false} ref={this.webcamRef} screenshotFormat="image/jpeg" videoConstraints={{ facingMode: this.state.facingMode}} />
-                <button onClick={this.capture}>Capture Photo</button>
-                <button onClick={this.toggleCamera}>Toggle Camera</button>
+                <button className="captureButton" onClick={this.capture}>Capture Photo</button>
+                <button className="toggleButton" onClick={this.toggleCamera}>Toggle Camera</button>
             </div>
         );
     }
