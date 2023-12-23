@@ -6,6 +6,9 @@ class Camera extends React.Component {
     constructor(props) {
         super(props);
         this.webcamRef = React.createRef();
+        this.state = {
+            facingMode: 'environment',
+        };
     }
 
     capture = (e) => {
@@ -27,11 +30,19 @@ class Camera extends React.Component {
         this.props.updateImage(imageFile, URL.createObjectURL(imageFile));
     };
 
+    toggleCamera = (e) => {
+        e.preventDefault();
+        this.setState((previousState) => ({
+            facingMode: previousState.facingMode === 'environment' ? 'user' : 'environment',
+        }));
+    };
+
     render = () => {
         return (
             <div>
-                <Webcam className="camera" audio={false} ref={this.webcamRef} screenshotFormat="image/jpeg" />
+                <Webcam className="camera" audio={false} ref={this.webcamRef} screenshotFormat="image/jpeg" videoConstraints={{ facingMode: this.state.facingMode}} />
                 <button onClick={this.capture}>Capture Photo</button>
+                <button onClick={this.toggleCamera}>Toggle Camera</button>
             </div>
         );
     }
