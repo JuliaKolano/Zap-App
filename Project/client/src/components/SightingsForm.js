@@ -79,14 +79,17 @@ class SightingsForm extends React.Component {
         <form className="recordSightingForm" onSubmit={this.handleSubmit}>
           <div className="inputContainer">
             <label htmlFor="image">Image: </label>
-            <input
-              className="recordSightingInput"
-              type="file"
-              id="image"
-              name="image"
-              accept="image/*"
-              onChange={this.handleFileChange}
-            />
+            <div className="icFile">
+              <input
+                className="recordSightingInput"
+                type="file"
+                id="image"
+                name="image"
+                accept="image/*"
+                onChange={this.handleFileChange}
+              />
+              <button className="takePictureButton" type="button">Take Picture</button>
+            </div>
             <div className="cut"></div>
           </div>
           <div className="inputContainer">

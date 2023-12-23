@@ -1,5 +1,4 @@
 #searchBar {
-    margin-top: -3em;
     position: fixed;
     width: 75%;
     background: rgb(226,135,67);
@@ -66,13 +65,14 @@
     background-color: rgb(226,135,67);
 }
 .sightings {
+    padding-top: 4em;
     margin-top: 10em;
 }
 .item {
     box-shadow: 0 4px 4px 4px rgba(0,0,0,0.2);
     border-radius: 1em;
     padding: 1em;
-    margin-top: 1em;
+    margin-top: 1.5em;
 }
 .pangolinImage {
     object-fit: cover;
