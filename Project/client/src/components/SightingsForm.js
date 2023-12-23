@@ -1,4 +1,5 @@
 import React from "react";
+import Camera from "./Camera";
 
 class SightingsForm extends React.Component {
   constructor(props) {
@@ -13,8 +14,16 @@ class SightingsForm extends React.Component {
         notes: "",
       },
       previewImageUrl: null,
+      cameraOn: false,
     };
+  };
+
+  updateImage = (image) => {
+    this.setState((previousState) => ({
+      formData: {...previousState.formData, image: image}
+    }));
   }
+
   handleInputChange = (e) => {
     const { name, value } = e.target;
     this.setState((previousState) => ({
@@ -30,6 +39,12 @@ class SightingsForm extends React.Component {
       previewImageUrl: previewImageUrl,
   }));
   };
+
+  handleCameraStatus = () => {
+    this.setState((previousState) => ({
+      cameraOn: !previousState.cameraOn
+    }))
+  }
 
   handleSubmit = async (e) => {
     e.preventDefault();
@@ -91,13 +106,14 @@ class SightingsForm extends React.Component {
                 accept="image/*"
                 onChange={this.handleFileChange}
               />
-              <button className="takePictureButton" type="button">Take Picture</button>
+              <button className="takePictureButton" type="button" onClick={this.handleCameraStatus}>Take Picture</button>
               {this.state.previewImageUrl && (
                 <img className="imagePreview" src={this.state.previewImageUrl} alt="preview of upload" width={80} height={60}/>
               )}
             </div>
             <div className="cut"></div>
           </div>
+          {this.state.cameraOn && (<Camera updateImage = {this.updateImage}/>)}
           <div className="inputContainer">
             <label htmlFor="deadOrAlive">Dead or Alive: </label>
             <select
