@@ -9,7 +9,7 @@ class SightingsForm extends React.Component {
         image: null,
         imagePath: "",
         deadOrAlive: "Alive",
-        deathCause: "Fence death: electrocution",
+        deathCause: "N/A",
         location: "",
         notes: "",
       },
@@ -27,9 +27,20 @@ class SightingsForm extends React.Component {
 
   handleInputChange = (e) => {
     const { name, value } = e.target;
-    this.setState((previousState) => ({
-      formData: { ...previousState.formData, [name]: value },
-    }));
+    if (name === 'deadOrAlive') {
+      this.setState((previousState) => ({
+        formData: {
+          ...previousState.formData, [name]: value,
+          deathCause: value === 'Alive' ? 'N/A' : previousState.formData.deathCause,
+        },
+      }));
+    } else {
+      this.setState((previousState) => ({
+        formData: {
+          ...previousState.formData, [name]: value
+        },
+      }));
+    }
   };
 
   handleFileChange = (e) => {
@@ -131,7 +142,8 @@ class SightingsForm extends React.Component {
             </select>
             <div className="cut"></div>
           </div>
-          <div className="inputContainer">
+          {formData.deadOrAlive === 'Dead' && (
+            <div className="inputContainer">
             <label htmlFor="deathCause">Death Cause: </label>
             <select
               className="recordSightingSelect"
@@ -148,10 +160,10 @@ class SightingsForm extends React.Component {
               </option>
               <option value="Road death">Road death</option>
               <option value="Other">Other</option>
-              <option value="N/A">N/A</option>
             </select>
             <div className="cut"></div>
           </div>
+          )}
           <div className="inputContainer">
             <label htmlFor="notes">Notes: </label>
             <textarea
