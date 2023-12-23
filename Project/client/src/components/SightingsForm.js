@@ -18,9 +18,10 @@ class SightingsForm extends React.Component {
     };
   };
 
-  updateImage = (image) => {
+  updateImage = (image, previewImageUrl) => {
     this.setState((previousState) => ({
-      formData: {...previousState.formData, image: image}
+      formData: {...previousState.formData, image: image},
+      previewImageUrl: previewImageUrl,
     }));
   }
 
@@ -113,7 +114,7 @@ class SightingsForm extends React.Component {
             </div>
             <div className="cut"></div>
           </div>
-          {this.state.cameraOn && (<Camera updateImage = {this.updateImage}/>)}
+          {this.state.cameraOn && (<Camera updateImage = {this.updateImage} />)}
           <div className="inputContainer">
             <label htmlFor="deadOrAlive">Dead or Alive: </label>
             <select
