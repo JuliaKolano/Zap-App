@@ -79,6 +79,14 @@
     height: 2.1em;
     margin-left: -1em;
 }
+.imagePreview {
+    object-fit: cover;
+    border-radius: 0.5em;
+    margin-left: 1em;
+}
+.recordSightingTextarea {
+    resize: none;
+}
 .recordSightingButton {
     display: block;
     background-color: rgb(226,135,67);

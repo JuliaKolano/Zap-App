@@ -14,7 +14,7 @@ class SightingList extends React.Component {
       return <p className="sightings">No sightings found that match the search: "{query}"</p>;
     } else {
       const sightingItems = sightings.map((item, index) => {
-        const imagePath = item.imagePath ? `http://jk911.brighton.domains/pangolin_api/${item.imagePath}` : "No image";
+        // const imagePath = item.imagePath ? `http://jk911.brighton.domains/pangolin_api/${item.imagePath}` : "No image";
         const deadOrAlive = item.deadOrAlive ? item.deadOrAlive : "Unknown";
         const deathCause = item.deathCause ? item.deathCause : "Unknown";
         const location = item.location ? item.location : "Unknown";

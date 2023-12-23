@@ -12,6 +12,7 @@ class SightingsForm extends React.Component {
         location: "",
         notes: "",
       },
+      previewImageUrl: null,
     };
   }
   handleInputChange = (e) => {
@@ -23,9 +24,11 @@ class SightingsForm extends React.Component {
 
   handleFileChange = (e) => {
     const file = e.target.files[0];
+    const previewImageUrl = URL.createObjectURL(file);
     this.setState((previousState) => ({
       formData: { ...previousState.formData, image: file },
-    }));
+      previewImageUrl: previewImageUrl,
+  }));
   };
 
   handleSubmit = async (e) => {
@@ -89,6 +92,9 @@ class SightingsForm extends React.Component {
                 onChange={this.handleFileChange}
               />
               <button className="takePictureButton" type="button">Take Picture</button>
+              {this.state.previewImageUrl && (
+                <img className="imagePreview" src={this.state.previewImageUrl} alt="preview of upload" width={80} height={60}/>
+              )}
             </div>
             <div className="cut"></div>
           </div>
