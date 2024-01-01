@@ -4,6 +4,10 @@ import Camera from "./Camera";
 class SightingsForm extends React.Component {
   constructor(props) {
     super(props);
+
+    //attempt to fetch data from local storage
+    const localFormData = JSON.parse(localStorage.getItem("formData")) || {};
+
     this.state = {
       formData: {
         image: null,
@@ -12,6 +16,7 @@ class SightingsForm extends React.Component {
         deathCause: "N/A",
         location: "",
         notes: "",
+        ...localFormData,
       },
       previewImageUrl: null,
       cameraOn: false,
@@ -22,8 +27,11 @@ class SightingsForm extends React.Component {
     this.setState((previousState) => ({
       formData: {...previousState.formData, image: image},
       previewImageUrl: previewImageUrl,
-    }));
-  }
+    }), () => {
+      // save the data to local storage after it gets updated
+      localStorage.setItem("formData", JSON.stringify(this.state.formData));
+    });
+  };
 
   handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -33,13 +41,19 @@ class SightingsForm extends React.Component {
           ...previousState.formData, [name]: value,
           deathCause: value === 'Alive' ? 'N/A' : previousState.formData.deathCause,
         },
-      }));
+      }), () => {
+        // save the data to local storage after it gets updated
+        localStorage.setItem("formData", JSON.stringify(this.state.formData));
+      });
     } else {
       this.setState((previousState) => ({
         formData: {
           ...previousState.formData, [name]: value
         },
-      }));
+      }), () => {
+        // save the data to local storage after it gets updated
+        localStorage.setItem("formData", JSON.stringify(this.state.formData));
+      });
     }
   };
 
