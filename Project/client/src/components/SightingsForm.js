@@ -29,8 +29,6 @@ class SightingsForm extends React.Component {
       previewImageUrl: previewImageUrl,
     }), () => {
       console.log("Updated State:", this.state);
-      // save the data to local storage after it gets updated
-      localStorage.setItem("formData", JSON.stringify(this.state.formData));
     });
   };
 
@@ -90,7 +88,7 @@ class SightingsForm extends React.Component {
         async (position) => {
           const { latitude, longitude } = position.coords;
           const formattedLocation = `${latitude}, ${longitude}`;
-          formData.append("location", formattedLocation);
+          formData.set("location", formattedLocation);
 
           // save the location to the local storage
           this.setState((previousState) => ({
@@ -101,7 +99,7 @@ class SightingsForm extends React.Component {
           }), () => {
             localStorage.setItem("formData", JSON.stringify(this.state.formData));
           });
-          
+
           // submit user's data to the database
           try {
             const response = await fetch(
