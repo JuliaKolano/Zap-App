@@ -4,3 +4,6 @@ import "./index.css";
 import App from "./App";
 
 ReactDOM.render(<App />, document.querySelector("#root"));
+
+//register service worker
+navigator.serviceWorker.register('../sw.js', {'scope': './'});
