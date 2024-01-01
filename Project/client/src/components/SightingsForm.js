@@ -28,6 +28,7 @@ class SightingsForm extends React.Component {
       formData: {...previousState.formData, image: image},
       previewImageUrl: previewImageUrl,
     }), () => {
+      console.log("Updated State:", this.state);
       // save the data to local storage after it gets updated
       localStorage.setItem("formData", JSON.stringify(this.state.formData));
     });
@@ -63,7 +64,7 @@ class SightingsForm extends React.Component {
     this.setState((previousState) => ({
       formData: { ...previousState.formData, image: file },
       previewImageUrl: previewImageUrl,
-  }));
+    }));
   };
 
   handleCameraStatus = () => {
@@ -88,7 +89,19 @@ class SightingsForm extends React.Component {
       navigator.geolocation.getCurrentPosition(
         async (position) => {
           const { latitude, longitude } = position.coords;
-          formData.append("location", `${latitude}, ${longitude}`);
+          const formattedLocation = `${latitude}, ${longitude}`;
+          formData.append("location", formattedLocation);
+
+          // save the location to the local storage
+          this.setState((previousState) => ({
+            formData: {
+              ...previousState.formData,
+              location: formattedLocation,
+            },
+          }), () => {
+            localStorage.setItem("formData", JSON.stringify(this.state.formData));
+          });
+          
           // submit user's data to the database
           try {
             const response = await fetch(
