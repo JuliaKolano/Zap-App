@@ -1,5 +1,5 @@
 import React from "react";
-import temporaryImage from "../images/pangolin_1.jpg";
+import defaultImage from "../images/pangolin_1.jpg";
 
 class SightingList extends React.Component {
 
@@ -77,7 +77,7 @@ class SightingList extends React.Component {
       return <p className="sightings">No sightings found that match the search: "{query}"</p>;
     } else {
       const sightingItems = sightings.map((item, index) => {
-        // const imagePath = item.imagePath ? `http://jk911.brighton.domains/pangolin_api/${item.imagePath}` : "No image";
+        // const imagePath = item.imagePath ? `http://jk911.brighton.domains/pangolin_api/${item.imagePath}` : {defaultImage};
         const deadOrAlive = item.deadOrAlive ? item.deadOrAlive : "Unknown";
         const deathCause = item.deathCause ? item.deathCause : "Unknown";
         const location = item.location ? this.renderLocation(item.location) : "Unknown";
@@ -86,7 +86,7 @@ class SightingList extends React.Component {
 
         return (
           <div key={index.toString()} className="item">
-            <img className="pangolinImage" src={temporaryImage} alt="a sighted pangolin" width="130" height="100"></img>
+            <img className="pangolinImage" src={defaultImage} alt="a sighted pangolin" width="130" height="100"></img>
             <p><strong>Dead or Alive:</strong> {deadOrAlive}</p>
             <p><strong>Death Cause:</strong> {deathCause}</p>
             <p><strong>Location:</strong> {location}</p>
