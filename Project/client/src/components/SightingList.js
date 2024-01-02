@@ -2,11 +2,26 @@ import React from "react";
 import temporaryImage from "../images/pangolin_1.jpg";
 
 class SightingList extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      expandedNotes: false,
+    };
+  };
+
+  handleNotesStatus = () => {
+    this.setState((previousState) => ({
+      expandedNotes: !previousState.expandedNotes,
+    }));
+  };
+
   render = () => {
     const query = this.props.state.query;
     const loading = this.props.state.loading;
     const searched = this.props.state.searched;
     const sightings = this.props.state.sightings;
+    const expandedNotes = this.state.expandedNotes;
 
     if (loading) {
       return <p>Loading...</p>;
@@ -19,6 +34,7 @@ class SightingList extends React.Component {
         const deathCause = item.deathCause ? item.deathCause : "Unknown";
         const location = item.location ? item.location : "Unknown";
         const notes = item.notes ? item.notes : "None";
+        const notesClassName = expandedNotes ? "notes expanded" : "notes";
 
         return (
           <div key={index.toString()} className="item">
@@ -26,7 +42,13 @@ class SightingList extends React.Component {
             <p><strong>Dead or Alive:</strong> {deadOrAlive}</p>
             <p><strong>Death Cause:</strong> {deathCause}</p>
             <p><strong>Location:</strong> {location}</p>
-            <p><strong>Notes:</strong> {notes}</p>
+            <p className={notesClassName}><strong>Notes:</strong> {notes}</p>
+            {/* if the notes span more than two lines, hide the rest of them */}
+            {notes.length > 50 && (
+              <button className="notesButton" onClick={this.handleNotesStatus}>
+                {expandedNotes ? "Read less" : "Read more"}
+              </button>
+            )}
           </div>
         );
       });
