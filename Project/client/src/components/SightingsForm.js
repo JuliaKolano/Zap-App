@@ -71,6 +71,27 @@ class SightingsForm extends React.Component {
     }))
   }
 
+  // submit user's data to the database
+  submitFormData = async (formData) => {
+    try {
+      const response = await fetch(
+        "https://jk911.brighton.domains/pangolin_api",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+      if (response.ok) {
+        console.log("Form submitted successfully");
+      } else {
+        console.error("Error submitting form: ", response.status);
+      }
+    } catch (err) {
+      console.error("Error submitting form: ", err);
+    }
+    console.log(this.state.formData);
+  };
+
   handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -97,38 +118,24 @@ class SightingsForm extends React.Component {
               location: formattedLocation,
             },
           }), () => {
+            // data being submitted using geolocation
             localStorage.setItem("formData", JSON.stringify(this.state.formData));
+            this.submitFormData(formData);
           });
-
-          // submit user's data to the database
-          try {
-            const response = await fetch(
-              "https://jk911.brighton.domains/pangolin_api",
-              {
-                method: "POST",
-                body: formData,
-              }
-            );
-            if (response.ok) {
-              console.log("Form submitted successfully");
-            } else {
-              console.error("Error submitting form: ", response.status);
-            }
-          } catch (err) {
-            console.error("Error submitting form: ", err);
-          }
-          console.log(this.state.formData);
-        },
-        (error) => {
-          console.error("Error handling location: ", error.message);
+        }, () => {
+          // data being submitted using location from the input field
+          this.submitFormData(formData);
         }
       );
     } else {
-      console.error("Geolocation is not supported by your browser");
+      console.log("Geolocation is not supported by your browser");
+      this.submitFormData(formData);
     }
   };
+
   render = () => {
     const { formData } = this.state;
+
     return (
       <div>
         <form className="recordSightingForm" onSubmit={this.handleSubmit}>
@@ -189,6 +196,19 @@ class SightingsForm extends React.Component {
             <div className="cut"></div>
           </div>
           )}
+            <div className="inputContainer">
+              <label htmlFor="location">Location: </label>
+              <input
+              className="locationInput"
+              type="text"
+              id="location"
+              name="location"
+              value={formData.location}
+              onChange={this.handleInputChange}
+              placeholder="Enter location"
+              />
+              <div className="cut"></div>
+            </div>
           <div className="inputContainer">
             <label htmlFor="notes">Notes: </label>
             <textarea
