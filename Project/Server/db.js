@@ -11,8 +11,13 @@ const credentials = {
 
 async function query(sql, params) {
     const connection = await mysql.createConnection(credentials);
-    const [results, ] = await connection.execute(sql, params);
-    return results;
+    try {
+        const [results, ] = await connection.execute(sql, params);
+        return results;
+    // close the database connection after executing the query
+    } finally {
+        await connection.end();
+    }
 }
 
 module.exports = {
