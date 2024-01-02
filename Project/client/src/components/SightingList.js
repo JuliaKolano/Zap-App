@@ -1,5 +1,6 @@
 import React from "react";
 import defaultImage from "../images/pangolin_1.jpg";
+import loadingImage from "../images/loading.svg";
 
 class SightingList extends React.Component {
 
@@ -40,9 +41,15 @@ class SightingList extends React.Component {
           const locations = {...this.state.locations, [`${latitude},${longitude}`]: data.display_name};
           this.setState({locations});
         }
+      } else {
+        console.error('Failed to fetch location name');
+        const locations = {...this.state.locations, [`${latitude},${longitude}`]: "Unknown"};
+        this.setState({locations});
       }
     } catch (error) {
       console.error("Error fetching location data:", error);
+      const locations = {...this.state.locations, [`${latitude},${longitude}`]: "Unknown"};
+      this.setState({locations});
     }
   };
 
@@ -72,7 +79,7 @@ class SightingList extends React.Component {
     const expandedNotes = this.state.expandedNotes;
 
     if (loading) {
-      return <p>Loading...</p>;
+      return <img className="loading" src={loadingImage} alt="loading"></img>;
     } else if (sightings.length === 0 && searched !== false) {
       return <p className="sightings">No sightings found that match the search: "{query}"</p>;
     } else {
@@ -92,7 +99,7 @@ class SightingList extends React.Component {
             <p><strong>Location:</strong> {location}</p>
             <p className={notesClassName}><strong>Notes:</strong> {notes}</p>
             {/* if the notes span more than two lines, hide the rest of them */}
-            {notes.length > 50 && (
+            {notes.length > 60 && (
               <button className="notesButton" onClick={this.handleNotesStatus}>
                 {expandedNotes ? "Read less" : "Read more"}
               </button>

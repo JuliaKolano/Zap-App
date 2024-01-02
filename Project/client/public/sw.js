@@ -29,6 +29,18 @@ self.addEventListener('install', (e) => {
             return cache.addAll(filesToCache);
         })
     );
+
+    e.waitUntil(
+        fetch('https://jk911.brighton.domains/pangolin_api?search=')
+        .then((response) => response.json())
+        .then((data) => {
+            return caches.open(cacheName).then((cache) => {
+                return cache.put('https://jk911.brighton.domains/pangolin_api?search=', new Response(JSON.stringify(data)));
+            });
+        }).catch((error) => {
+            console.error('Error caching sightings: ', error);
+        })
+    );
 });
 
 //take control of all fetch requests

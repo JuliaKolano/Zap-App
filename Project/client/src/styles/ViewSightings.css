@@ -49,6 +49,12 @@
     width: 1px;
     overflow: hidden;
 }
+.loading {
+    padding-top: 5em;
+    margin-left: auto;
+    width: 100%;
+    height: 8em;
+}
 .ViewSightingsTitle {
     font-size: 2em;
     text-align: center;
