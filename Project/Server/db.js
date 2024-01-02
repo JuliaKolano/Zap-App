@@ -10,13 +10,26 @@ const credentials = {
 };
 
 async function query(sql, params) {
-    const connection = await mysql.createConnection(credentials);
+    let connection;
     try {
+        connection = await mysql.createConnection(credentials);
+
+        // check the database connection before performing any queries
+        if (!connection) {
+            throw new Error('Failed to successfully connect to the database');
+        }
+
         const [results, ] = await connection.execute(sql, params);
         return results;
+    // throw an error if not able to connect to the database
+    } catch (error) {
+        console.error('Database query error:', error.message);
+        throw error;
     // close the database connection after executing the query
     } finally {
-        await connection.end();
+        if (connection) {
+            await connection.end();
+        }
     }
 }
 
