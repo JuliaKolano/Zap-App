@@ -21,6 +21,7 @@ class SightingsForm extends React.Component {
       previewImageUrl: null,
       cameraOn: false,
       isOnline: navigator.onLine,
+      submissionStatus: null,
     };
   };
 
@@ -84,14 +85,16 @@ class SightingsForm extends React.Component {
         }
       );
       if (response.ok) {
+        this.setState({submissionStatus: 'success'})
         console.log("Form submitted successfully");
       } else {
         console.error("Error submitting form: ", response.status);
+        this.setState({submissionStatus: 'error'});
       }
     } catch (err) {
       console.error("Error submitting form: ", err);
+      this.setState({submissionStatus: 'error'});
     }
-    console.log(this.state.formData);
   };
 
   handleSubmit = async (e) => {
@@ -223,6 +226,11 @@ class SightingsForm extends React.Component {
             <div className="cut cutShort"></div>
           </div>
           <button className="recordSightingButton" type="submit">Submit</button>
+          {this.state.submissionStatus === 'success' ? (
+            <p className="submitMessage">Form submitted sucessfully!</p>
+          ) : this.state.submissionStatus === 'error' && (
+            <p className="submitMessage">Error submitting the form, please try again later</p>
+          )}
           {!this.state.isOnline && (
             <p>
               Please notice that you are currently in the offline mode,

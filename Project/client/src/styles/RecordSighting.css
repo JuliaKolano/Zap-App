@@ -127,4 +127,9 @@
 .recordSightingButton:active, .recordSightingInput::file-selector-button:active, .takePictureButton:active, .captureButton:active, .toggleButton:active {
     background-color: rgb(218, 105, 19);
 }
+.submitMessage {
+    display: block;
+    color: rgb(218, 105, 19);
+    padding-top: 0.5em;
+}
 /* Form css obtained from  https://codepen.io/ainalem/pen/GRqPwoz*/
