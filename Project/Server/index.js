@@ -36,8 +36,8 @@ async function getSightings(req) {
         // if the search parameter is empty, return all the rows
         let sql = 'SELECT * FROM sightings ';
         if (search.length > 0 && search.length <= 32) {
-            sql += `WHERE deadOrAlive LIKE ? OR deathCause LIKE ? OR location LIKE ? OR notes LIKE ?`;
-            const params = [`%${search}%`, `%${search}%`, `%${search}%`, `%${search}%`];
+            sql += `WHERE deadOrAlive LIKE ? OR deathCause LIKE ? OR location LIKE ? OR notes LIKE ? OR deadOrAlive = ? OR deathCause = ? OR location = ? OR notes = ?`;
+            const params = [`%${search}%`, `%${search}%`, `%${search}%`, `%${search}%`, `%${search}%`, `%${search}%`, `%${search}%`, `%${search}%`];
             const rows = await db.query(sql, params);
 
             if (rows) {

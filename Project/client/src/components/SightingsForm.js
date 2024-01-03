@@ -20,6 +20,7 @@ class SightingsForm extends React.Component {
       },
       previewImageUrl: null,
       cameraOn: false,
+      isOnline: navigator.onLine,
     };
   };
 
@@ -28,6 +29,7 @@ class SightingsForm extends React.Component {
       formData: {...previousState.formData, image: image},
       previewImageUrl: previewImageUrl,
     }), () => {
+      console.log(this.state.isOnline);
       console.log("Updated State:", this.state);
     });
   };
@@ -221,6 +223,16 @@ class SightingsForm extends React.Component {
             <div className="cut cutShort"></div>
           </div>
           <button className="recordSightingButton" type="submit">Submit</button>
+          {!this.state.isOnline && (
+            <p>
+              Please notice that you are currently in the offline mode,
+              which means that you cannot upload your sighting right now.
+              All the information you input into this form will be saved for
+              later upload when you recover your connection. However, the picture 
+              you take using this website will not be retained, so make sure to save
+              it to your camera roll before you leave this page.
+            </p>
+          )}
         </form>
       </div>
     );

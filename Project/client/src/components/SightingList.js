@@ -80,8 +80,10 @@ class SightingList extends React.Component {
 
     if (loading) {
       return <img className="loading" src={loadingImage} alt="loading"></img>;
-    } else if (sightings.length === 0 && searched !== false) {
+    } else if (sightings.length === 0 && searched !== false && query) {
       return <p className="sightings">No sightings found that match the search: "{query}"</p>;
+    } else if (sightings.length === 0 && !query) {
+      return <p className="sightings">No sighitngs at the moment</p>
     } else {
       const sightingItems = sightings.map((item, index) => {
         // const imagePath = item.imagePath ? `http://jk911.brighton.domains/pangolin_api/${item.imagePath}` : {defaultImage};
@@ -93,13 +95,14 @@ class SightingList extends React.Component {
 
         return (
           <div key={index.toString()} className="item">
+            {/* the src for the image should be imagePath, but getting the images from the server doesn't work */}
             <img className="pangolinImage" src={defaultImage} alt="a sighted pangolin" width="130" height="100"></img>
             <p><strong>Dead or Alive:</strong> {deadOrAlive}</p>
             <p><strong>Death Cause:</strong> {deathCause}</p>
             <p><strong>Location:</strong> {location}</p>
             <p className={notesClassName}><strong>Notes:</strong> {notes}</p>
             {/* if the notes span more than two lines, hide the rest of them */}
-            {notes.length > 60 && (
+            {notes.length > 120 && (
               <button className="notesButton" onClick={this.handleNotesStatus}>
                 {expandedNotes ? "Read less" : "Read more"}
               </button>
@@ -107,6 +110,7 @@ class SightingList extends React.Component {
           </div>
         );
       });
+      console.log(sightings);
       return <div className="sightings">{sightingItems}</div>;
     }
   };
